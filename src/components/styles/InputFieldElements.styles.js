@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
 export const InputContainer = styled.div`
   position: relative;
@@ -13,9 +13,9 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   width: 310px;
   height: 16px;
-  background: #f7f7f7;
+  background: ${({ bg }) => bg};
   font-size: 18px;
-  border: 1px solid #b8b8b8;
+  border: 1px solid ${({ borderColor }) => borderColor};
   border-radius: 10px;
   padding: 16px;
 
@@ -25,7 +25,7 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
-    background-color: #fefefe;
+    background-color: ${({ focusColor }) => focusColor};
   }
 
   &:not(:placeholder-shown) + span,
@@ -39,7 +39,7 @@ export const Label = styled.span`
   position: absolute;
   left: 16px;
   font-size: 18px;
-  color: #999999;
+  color: ${({ textColor }) => textColor};
   pointer-events: none;
   transition: 0.6s;
 `;

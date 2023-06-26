@@ -2,13 +2,27 @@ import {
   InputContainer,
   Input,
   Label,
-} from './styles/InputFieldElements.styles';
+} from "./styles/InputFieldElements.styles";
 
-function InputField({ label }) {
+function InputField({ bg, label, borderColor, textColor, focusColor }) {
   return (
     <InputContainer>
-      <Input placeholder="  " />
-      <Label>{label}</Label>
+      <Input
+        placeholder="  "
+        bg={bg}
+        borderColor={borderColor}
+        textColor={textColor}
+        focusColor={focusColor}
+      />
+
+      <Label
+        bg={bg}
+        borderColor={borderColor}
+        textColor={textColor}
+        focusColor={focusColor}
+      >
+        {label}
+      </Label>
     </InputContainer>
   );
 }

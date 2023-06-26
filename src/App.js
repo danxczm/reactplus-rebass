@@ -1,32 +1,16 @@
 import { ThemeProvider } from "@emotion/react";
 import theme from "./components/Theme";
-import { Global } from "@emotion/react";
+import GlobalStyles from "./components/styles/GlobalStyles";
 import { Button, Flex, Text } from "rebass";
 import { Label, Switch } from "@rebass/forms";
 import { useState } from "react";
-// import theme from "@rebass/preset";
-
-const GlobalStyles = () => (
-  <Global
-    styles={{
-      "*": {
-        fontFamily: "Montserrat, sans-serif",
-        margin: 0,
-        padding: 0,
-      },
-    }}
-  />
-);
+import InputField from "./components/InputField";
 
 function App() {
-  console.log(`theme: `, {
-    theme,
-  });
   const [switched, setSwitched] = useState(false);
   const toggleSwitch = () => {
     setSwitched(!switched);
   };
-  console.log(`switched: `, switched);
 
   const { colors, fontSize, fontWeight } = theme;
 
@@ -53,7 +37,7 @@ function App() {
           fontWeight={fontWeight.normal}
           color={switched ? "white" : "black"}
         >
-          {switched ? "Dark" : "Light"} theme buttons
+          {switched ? "Dark" : "Light"} theme
         </Text>
         <Button
           sx={{ borderRadius: "10px" }}
@@ -121,6 +105,28 @@ function App() {
         >
           Get SMS Code
         </Button>
+        <InputField
+          bg={switched ? colors.darkThemeShadesOn : colors.generalGhostWhite}
+          textColor={
+            switched ? colors.generalGentleGray : colors.generalSpanishGray
+          }
+          focusColor={switched ? "#6A6A6A" : "#fefefe"}
+          borderColor={
+            switched ? colors.generalPebblePebble : colors.generalMediumGray
+          }
+          label={"Phone number"}
+        />
+        <InputField
+          bg={switched ? colors.darkThemeShadesOn : colors.generalGhostWhite}
+          textColor={
+            switched ? colors.generalGentleGray : colors.generalSpanishGray
+          }
+          focusColor={switched ? "#6A6A6A" : "#fefefe"}
+          borderColor={
+            switched ? colors.generalPebblePebble : colors.generalMediumGray
+          }
+          label={"SMS Code"}
+        />
       </Flex>
     </ThemeProvider>
   );
