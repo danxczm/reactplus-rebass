@@ -1,49 +1,39 @@
-import { ThemeProvider } from "@emotion/react";
-import theme from "./components/Theme";
+import { useTheme } from "@emotion/react";
 import GlobalStyles from "./components/styles/GlobalStyles";
 import { Button, Flex, Text } from "rebass";
 import { Label, Switch } from "@rebass/forms";
-import { useState } from "react";
 import InputField from "./components/InputField";
 
-function App() {
-  const [switched, setSwitched] = useState(false);
-  const toggleSwitch = () => {
-    setSwitched(!switched);
-  };
-
-  const { colors, fontSize, fontWeight } = theme;
+function App({ isDark, setIsDark }) {
+  const theme = useTheme();
+  const { colors, buttons, inputs, fontSize, fontWeight } = theme;
 
   return (
-    <ThemeProvider
-      theme={{
-        theme,
-      }}
-    >
+    <>
       <GlobalStyles />
       <Flex
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="center"
-        bg={switched ? colors.generalSplashBg : colors.generalPerfectGray}
+        bg={colors.containerBg}
         p={40}
         height="100vh"
       >
         <Label sx={{ padding: "10px" }}>
-          <Switch mr="10px" checked={switched} onClick={() => toggleSwitch()} />
+          <Switch checked={isDark} onClick={() => setIsDark(!isDark)} />
         </Label>
         <Text
           mb={20}
           fontWeight={fontWeight.normal}
-          color={switched ? "white" : "black"}
+          color={isDark ? "white" : "black"}
         >
-          {switched ? "Dark" : "Light"} theme
+          {isDark ? "Dark" : "Light"} theme
         </Text>
         <Button
           sx={{ borderRadius: "10px" }}
           fontSize={fontSize.m}
           fontWeight={fontWeight.normal}
-          color={switched ? colors.generalGentleGray : colors.generalDavysGray}
+          color={buttons.signUpText}
           bg="inherit"
           width={340}
           height={50}
@@ -55,10 +45,8 @@ function App() {
           sx={{ borderRadius: "10px" }}
           fontSize={fontSize.m}
           fontWeight={fontWeight.normal}
-          color={
-            switched ? colors.generalPebblePebble : colors.generalGhostWhite
-          }
-          bg={switched ? colors.generalGentleGray : colors.generalPebblePebble}
+          color={buttons.primaryColor}
+          bg={buttons.primaryBg}
           width={340}
           height={50}
           m={2}
@@ -69,10 +57,8 @@ function App() {
           sx={{ borderRadius: "10px" }}
           fontSize={fontSize.m}
           fontWeight={fontWeight.normal}
-          color={
-            switched ? colors.generalPebblePebble : colors.generalGhostWhite
-          }
-          bg={switched ? colors.generalGentleGray : colors.generalPebblePebble}
+          color={buttons.primaryColor}
+          bg={buttons.primaryBg}
           width={340}
           height={50}
           m={2}
@@ -83,10 +69,8 @@ function App() {
           sx={{ borderRadius: "10px" }}
           fontSize={fontSize.m}
           fontWeight={fontWeight.normal}
-          color={
-            switched ? colors.generalPebblePebble : colors.generalGhostWhite
-          }
-          bg={switched ? colors.generalGentleGray : colors.generalPebblePebble}
+          color={buttons.primaryColor}
+          bg={buttons.primaryBg}
           width={340}
           height={50}
           m={2}
@@ -97,8 +81,8 @@ function App() {
           sx={{ borderRadius: "10px" }}
           fontSize={fontSize.m}
           fontWeight={fontWeight.normal}
-          color={switched ? colors.generalSilverOp50 : colors.generalGhostWhite}
-          bg={switched ? colors.darkThemeShadesOn : colors.generalSilverSilver}
+          color={buttons.secondaryColor}
+          bg={buttons.secondaryBg}
           width={340}
           height={50}
           m={2}
@@ -106,29 +90,21 @@ function App() {
           Get SMS Code
         </Button>
         <InputField
-          bg={switched ? colors.darkThemeShadesOn : colors.generalGhostWhite}
-          textColor={
-            switched ? colors.generalGentleGray : colors.generalSpanishGray
-          }
-          focusColor={switched ? "#6A6A6A" : "#fefefe"}
-          borderColor={
-            switched ? colors.generalPebblePebble : colors.generalMediumGray
-          }
+          bg={inputs.primaryBg}
+          textColor={inputs.primaryColor}
+          focusColor={inputs.focusColor}
+          borderColor={inputs.borderColor}
           label={"Phone number"}
         />
         <InputField
-          bg={switched ? colors.darkThemeShadesOn : colors.generalGhostWhite}
-          textColor={
-            switched ? colors.generalGentleGray : colors.generalSpanishGray
-          }
-          focusColor={switched ? "#6A6A6A" : "#fefefe"}
-          borderColor={
-            switched ? colors.generalPebblePebble : colors.generalMediumGray
-          }
+          bg={inputs.primaryBg}
+          textColor={inputs.primaryColor}
+          focusColor={inputs.focusColor}
+          borderColor={inputs.borderColor}
           label={"SMS Code"}
         />
       </Flex>
-    </ThemeProvider>
+    </>
   );
 }
 

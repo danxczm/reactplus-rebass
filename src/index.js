@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-
+import { ThemeProvider } from "@emotion/react";
 import App from "./App";
+import { theme, darkTheme } from "./components/Theme";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function Root() {
+  const [isDark, setIsDark] = useState(false);
+
+  return (
+    <ThemeProvider theme={isDark ? darkTheme : theme}>
+      <App isDark={isDark} setIsDark={setIsDark} />
+    </ThemeProvider>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.createRoot(rootElement).render(<Root />);
