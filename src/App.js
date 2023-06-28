@@ -1,4 +1,5 @@
 import { useTheme } from "@emotion/react";
+import { css } from "@emotion/core";
 import GlobalStyles from "./components/styles/GlobalStyles";
 import { Button, Flex, Text } from "rebass";
 import { Label, Switch } from "@rebass/forms";
@@ -18,6 +19,10 @@ function App({ isDark, setIsDark }) {
         bg={colors.containerBg}
         p={40}
         height="100vh"
+        css={css`
+          transition-duration: 1s;
+          transition-property: background-color, color;
+        `}
       >
         <Label sx={{ padding: "10px" }}>
           <Switch checked={isDark} onClick={() => setIsDark(!isDark)} />

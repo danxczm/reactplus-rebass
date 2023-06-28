@@ -13,7 +13,6 @@ const theme = {
     normal: 400,
     bold: 600,
   },
-  lightTheme: "light",
 
   colors: {
     containerBg: palette.generalPerfectGray,
@@ -35,7 +34,6 @@ const theme = {
 
 const darkTheme = {
   ...theme,
-  darkTheme: "dark",
   colors: {
     containerBg: palette.generalSplashBg,
   },
